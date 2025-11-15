@@ -15,20 +15,20 @@ def main():
         # Record global start time
         start_time = time.time_ns()
 
-        # Create threads
-        threads = [
-            threading.Thread(target=factorial, args=(50,)),
-            threading.Thread(target=factorial, args=(100,)),
-            threading.Thread(target=factorial, args=(200,))
-        ]
+        # Create threads one by one
+        t1 = threading.Thread(target=factorial, args=(50,))
+        t2 = threading.Thread(target=factorial, args=(100,))
+        t3 = threading.Thread(target=factorial, args=(200,))
 
-        # Start threads
-        for t in threads:
-            t.start()
+        # Start threads one by one
+        t1.start()
+        t2.start()
+        t3.start()
 
-        # Wait for all threads to finish
-        for t in threads:
-            t.join()
+        # Join threads one by one
+        t1.join()
+        t2.join()
+        t3.join()
 
         # Record global end time
         end_time = time.time_ns()
@@ -45,6 +45,3 @@ def main():
 if __name__ == "__main__":
     print("=== Multithreading Factorial Test ===")
     main()
-
-
-
